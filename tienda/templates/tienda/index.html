@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    
+
+    <title>Inicio</title>
+  </head>
+  <body>
+    <h1>BIENVENIDO A LA TIENDA DE DISCOS !</h1>
+
+    {% if user.is_authenticated %}
+    <p>Welcome, <b>{{ user.get_username }}</b>. Gracias por ingresar .</p>
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <p>Welcome, new user. Please 
+   	<a href={% url 'signup' %}>Signup</a> or 
+    <a href={% url 'login' %}>Login</a> 
+    </p>
+{% endif %}
+  </body>
+</html>

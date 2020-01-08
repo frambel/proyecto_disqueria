@@ -1,0 +1,6 @@
+*.py[co]
+*.DS_Store
+_build/
+.vscode/
+*.pyc
+*.sqlite3
