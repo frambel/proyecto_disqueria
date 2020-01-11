@@ -1,23 +1,63 @@
-<!doctype html>
-<html lang="es">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    
+{% extends "tienda/base.html" %}
 
-    <title>Inicio</title>
-  </head>
-  <body>
-    <h1>BIENVENIDO A LA TIENDA DE DISCOS !</h1>
+{% block title %}Inicio{% endblock %}
 
-    {% if user.is_authenticated %}
-    <p>Welcome, <b>{{ user.get_username }}</b>. Gracias por ingresar .</p>
-    <a href="{% url 'logout' %}">Logout</a>
-{% else %}
-    <p>Welcome, new user. Please 
-   	<a href={% url 'signup' %}>Signup</a> or 
-    <a href={% url 'login' %}>Login</a> 
-    </p>
-{% endif %}
-  </body>
-</html>
+{% block content %}
+<div class="album py-5 bg-light ">
+    <div class="">
+
+      <div class="row ">
+		{% for disco in discos %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm card_size">
+            <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>ksakfksd</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">ffff</text></svg> -->
+			<!-- <img with='70px' height="70" src="{{ disco.image.url }}" /> -->
+			<img class="size" src="{{ disco.image.url }}"  alt="{{disco.titulo}}">
+			<p class="card-text">{{disco.titulo}}.</p>
+          </div>
+		</div>
+		{% endfor %}
+        <!-- <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            
+          </div>
+        </div> -->
+        <!-- <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+<!-- <div class="container">
+	<ul>
+	 {% for disco in discos %}   
+	 <li>
+		 {{disco.titulo}} 
+		 <img with='70px' height="70" src="{{ disco.image.url }}" />
+	 </li>
+	 <br>
+	 {% endfor %}
+	</ul>
+ 
+ </div> -->
+ 
+
+<!-- <div class="container">
+  	{% if user.is_authenticated %}
+    <p>Hola!!!, <b>{{ user.get_username }}</b>. Gracias por visitarnos.</p>
+    <a href={% url 'logout' %}>Logout</a>
+  </h1>
+  {% else %}
+	  <p>Hola nuevo usuario Por favor.
+	  	<a href={% url 'signup' %}>Registrese</a> o
+	    <a href={% url 'login' %}>Autentiquese</a>
+	  </p>
+	  <hr class="my-4">
+  {% endif %}
+</div> -->
+{% endblock %}

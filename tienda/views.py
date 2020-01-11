@@ -4,6 +4,8 @@ from django.contrib.auth import login, authenticate, logout as django_logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from tienda.forms import SignUpForm
+from .models import *
+from django.db.models import Q
 
 def signup(request):
     if request.method == 'POST':
@@ -20,4 +22,10 @@ def signup(request):
     return render(request, 'tienda/signup.html', {'form': form})
 
 def inicio(request):
-    return render(request, 'tienda/index.html')
+    if request.method == 'POST' and 'search' in request.POST:
+        criteria = request.POST['search']
+        discos = Disco.objects.filter(Q(titulo__icontains=criteria) | Q(artista__nombre__icontains=criteria) | Q(artista__pais__nombre__icontains=criteria) )
+    else:
+        discos = Disco.objects.all()
+    
+    return render(request, 'tienda/index.html', {'discos': discos})

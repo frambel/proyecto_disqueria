@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'tienda/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'tienda/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'tienda/bootstrap/css/open-iconic-bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'tienda/bootstrap/css/open-iconic.ttf' %}"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ=" crossorigin="anonymous" />
+	<title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+	<div id="navbar" class="container ">
+        {% block bar %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+          <a class="navbar-brand {% if "/" == request.path %}active {% endif %}" href="{% url 'tienda:inicio' %}"><img width="50" height="60" src="{% static 'tienda/images/mozart.jpg' %}"  alt="Logo"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse fondo" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link {% if "/" == request.path %}active {% endif %}" href="{% url 'tienda:inicio' %}">Inicio <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ">Artistas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ">Genero</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ">Contacto</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ">Registrarse</a>
+              </li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'tienda:inicio' %}">{% csrf_token %}
+              <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+        {% endblock %}
+    </div>
+
+    <div id="content" class="container ">
+        {% block content %}{% endblock %}
+    </div> 
+
+    <footer class="container">
+      <span class="oi oi-person" title="person" aria-hidden="true"></span>
+      <span class="oi oi-musical-note"></span>
+      <span class="oi oi-icon-name" title="icon name" aria-hidden="true"></span>
+    </footer>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'tienda/bootstrap/js/jquery-3.4.1.slim.min.js' %}"></script>
+    <script src="{% static 'tienda/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'tienda/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

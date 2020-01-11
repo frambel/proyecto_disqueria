@@ -1,0 +1,17 @@
+.size{
+    width:250px !important;
+    height: 300px !important;
+}
+
+.card_size{
+    width: 253px !important;
+}
+
+
+.fondo {
+    background-color: #343a40;
+}
+
+li > a{
+    color: white !important;
+}
