@@ -15,3 +15,7 @@
 li > a{
     color: white !important;
 }
+
+.is{
+    display: inline;
+}

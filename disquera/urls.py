@@ -27,7 +27,6 @@ urlpatterns = [
     path('', include('tienda.urls')),
     path('logout/', auth_views.LogoutView.as_view(next_page='tienda:inicio'), name='logout'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('signup/', views.signup, name='signup'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

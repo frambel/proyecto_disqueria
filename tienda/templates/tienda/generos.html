@@ -1,0 +1,18 @@
+{% extends "tienda/base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+
+<div class="list-group">
+  {% for genero in generos %}
+  <a href="#" class="list-group-item list-group-item-action ">
+    {{genero.nombre}}
+  </a>
+  {% endfor %}
+  
+</div>
+
+
+{% endblock %}

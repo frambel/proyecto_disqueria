@@ -27,5 +27,11 @@ def inicio(request):
         discos = Disco.objects.filter(Q(titulo__icontains=criteria) | Q(artista__nombre__icontains=criteria) | Q(artista__pais__nombre__icontains=criteria) )
     else:
         discos = Disco.objects.all()
-    
-    return render(request, 'tienda/index.html', {'discos': discos})
+    generos = Genero.objects.all()
+    return render(request, 'tienda/index.html', {'discos': discos, 'generos': generos})
+
+def genre(request, slug):
+    nombre = slug
+    generos = Genero.objects.all()
+    discos = Disco.objects.filter(genero__nombre=nombre)
+    return render(request, 'tienda/index.html', {'discos': discos, 'generos': generos})

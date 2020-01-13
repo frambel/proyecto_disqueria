@@ -1,17 +1,33 @@
-  <h2>Sign up</h2>
-  <form method="post">
+{% extends "tienda/base.html" %}
+{% load static %}
+{% block title %}Registrarse{% endblock %}
+    
+{% block content %}
+<h1 class="h3 mb-3 font-weight-normal">Por favor registrese</h1>
+  <form method="post"  class="">
+    <div class="form-group">
     {% csrf_token %}
     {% for field in form %}
       <p>
         {{ field.label_tag }}<br>
+        <div class="col-7">
         {{ field }}
+      </div>
         {% if field.help_text %}
           <small style="color: grey">{{ field.help_text }}</small>
         {% endif %}
         {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
+        <div class="alert alert-danger col-7" role="alert">{{ error }}</div>
         {% endfor %}
       </p>
     {% endfor %}
-    <button type="submit">Sign up</button>
+    <button class="btn btn-primary" type="submit">Aceptar</button>
   </form>
+</div>
+  {% endblock %}
+
+  {% block js %}
+  <script>
+  $("input").addClass("form-control");
+</script>
+  {% endblock %}

@@ -1,5 +1,36 @@
-<form method="post">
+{% extends "tienda/base.html" %}
+{% load static %}
+{% block title %}Registrarse{% endblock %}
+    
+{% block content %}
+<h1 class="h3 mb-3 font-weight-normal">Ingresar</h1>
+  <form method="post"  class="">
+    <div class="form-group">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log in</button>
- </form>
+    {% if form.errors %}
+        <div class="alert alert-danger col-7" role="alert">Por favor, introduzca un nombre de usuario
+             y clave correctos. Observe que ambos campos pueden ser sensibles a mayúsculas o registrese 
+             <a  href="{% url 'tienda:signup' %}">Registrarse</a>.
+        </div>
+    {% endif %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        <div class="col-7">
+        {{ field }}
+      </div>
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+      </p>
+    {% endfor %}
+    <button class="btn btn-primary" type="submit">Aceptar</button>
+  </form>
+</div>
+  {% endblock %}
+
+  {% block js %}
+  <script>
+  $("input").addClass("form-control");
+</script>
+  {% endblock %}
