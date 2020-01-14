@@ -1,0 +1,34 @@
+{% extends "tienda/base.html" %}
+{% load static %}
+{% block title %}Contacto{% endblock %}
+    
+{% block content %}
+
+<h1 class="h3 mb-3 font-weight-normal">Contacto</h1>
+{% if message %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
+<form class="col-7" action="{% url 'tienda:enviar_mail' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="Nombre">Nombre</label>
+        <input type="text" class="form-control" id="Nombre" name="nombre">
+    </div>
+    <div class="form-group">
+      <label for="Email">Email address</label>
+      
+      <input type="email" class="form-control" id="Email" name="email" aria-describedby="emailHelp">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="Body">Example textarea</label>
+        <textarea class="form-control" id="Body" name="body" rows="6"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+  {% endblock %}

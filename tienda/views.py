@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from tienda.forms import SignUpForm
 from .models import *
 from django.db.models import Q
+from django.core.mail import send_mail, BadHeaderError
 
 def signup(request):
     if request.method == 'POST':
@@ -35,3 +36,23 @@ def genre(request, slug):
     generos = Genero.objects.all()
     discos = Disco.objects.filter(genero__nombre=nombre)
     return render(request, 'tienda/index.html', {'discos': discos, 'generos': generos})
+
+def contacto(request):
+    generos = Genero.objects.all()
+    return render(request, 'tienda/contacto.html', {'generos': generos})
+
+def enviar_mail(request):
+    nombre = request.POST.get('nombre', '')
+    body = request.POST.get('body', '')
+    email = request.POST.get('email', '')
+    generos = Genero.objects.all()
+    if body and email and nombre:
+        try:
+            mensaje = 'De ' + nombre + '\n\n' + body
+            send_mail('contacto', mensaje, email, ['info@amadeus.com'])
+        except BadHeaderError:
+            return render(request, 'tienda/contacto.html', {'generos': generos, 'message': 'Cabeceras invalidas.'})
+        return render(request, 'tienda/contacto.html', {'generos': generos, 'message': 'Mensaje enviado con exito.'})
+        # return redirect('/contacto/' , {'message': 'Mensaje enviado con exito.'})
+    else:
+        return render(request, 'tienda/contacto.html', {'generos': generos, 'message': 'Verifique que todos los campos han sido llenados y validos.'})
