@@ -3,5 +3,6 @@
 _build/
 .vscode/
 media/
+mails/
 *.pyc
 *.sqlite3

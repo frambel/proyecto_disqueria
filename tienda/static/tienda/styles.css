@@ -16,6 +16,28 @@ li > a{
     color: white !important;
 }
 
+form > a{
+    color: white !important;
+}
+
 .is{
     display: inline;
+}
+
+footer{
+    background-color: #3e4551;
+}
+
+colorFuente{
+    color: white !important;
+    
+}
+
+address{
+    margin-left: 60px;
+}
+
+.registro{
+    margin-left: 120px;
+    margin-top: 40px;
 }
