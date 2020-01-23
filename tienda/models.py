@@ -4,7 +4,7 @@ class Disco(models.Model):
     titulo = models.CharField(max_length=200)
     disquera = models.ForeignKey('Disquera', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images/', default='')
-    precio = models.IntegerField()
+    precio = models.FloatField()
     def __str__(self):
         return self.titulo
 
