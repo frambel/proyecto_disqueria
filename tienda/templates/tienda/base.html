@@ -22,8 +22,62 @@
 
 <body>
   <div id="navbar" class="container ">
+
+
+    <div class="jumbotron">
+
+      <div class="row">
+        <div class="col-md-3 col-lg-3 col-xl-3" style="padding-top: 10px;">
+          <h5 ><em></em>DISQUERIA AMADEUS</em></h5>.
+           <p class="lead">la mejor de la cuadra .</p>
+        </div>
+        <div id="" class="nav-menu col-md-9 col-lg-9 col-xl-9">
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'tienda:inicio' %}"><strong>Inicio</strong> </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Genero
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% for genero in generos %}
+              <a class="dropdown-item" href="{% url 'tienda:genre' genero %}">{{ genero }}</a>
+              {% endfor %}
+            </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'tienda:contacto' %}">Contacto</a>
+            </li>
+            <li class="nav-item">
+              <form class="form-inline">
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'logout' %}">Hola!!! <strong>{{ user.get_username }}</strong> | Salir</a>
+                {% else %}
+                <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
+                <a class="nav-link" href="{% url 'tienda:signup' %}">Registrarse</a>
+                {% endif %}
+              </form>
+            </li>
+            <li class="nav-item">
+              <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'tienda:inicio' %}">{% csrf_token %}
+                <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </li>
+          </ul>
+        </div>
+      
+
+
+      
+      
+    </div>
+
+
     {% block bar %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light ">
       <a class="navbar-brand" href="{% url 'tienda:inicio' %}"><img width="50" height="60"
           src="{% static 'tienda/images/mozart.jpg' %}" alt="Logo"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -68,7 +122,7 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
-    </nav>
+    </nav> -->
     {% endblock %}
   </div>
 
