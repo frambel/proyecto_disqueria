@@ -21,109 +21,56 @@
 </head>
 
 <body>
-  <div id="navbar" class="container ">
+  <div id="navbar" class="container " style="height: 110px;">
+    
 
 
-    <div class="jumbotron">
-
-      <div class="row">
-        <div class="col-md-3 col-lg-3 col-xl-3" style="padding-top: 10px;">
-          <h5 ><em></em>DISQUERIA AMADEUS</em></h5>.
-           <p class="lead">la mejor de la cuadra .</p>
-        </div>
-        <div id="" class="nav-menu col-md-9 col-lg-9 col-xl-9">
-          <ul class="nav justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'tienda:inicio' %}"><strong>Inicio</strong> </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Genero
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              {% for genero in generos %}
-              <a class="dropdown-item" href="{% url 'tienda:genre' genero %}">{{ genero }}</a>
-              {% endfor %}
-            </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'tienda:contacto' %}">Contacto</a>
-            </li>
-            <li class="nav-item">
-              <form class="form-inline">
-                {% if user.is_authenticated %}
-                <a class="nav-link" href="{% url 'logout' %}">Hola!!! <strong>{{ user.get_username }}</strong> | Salir</a>
-                {% else %}
-                <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
-                <a class="nav-link" href="{% url 'tienda:signup' %}">Registrarse</a>
-                {% endif %}
-              </form>
-            </li>
-            <li class="nav-item">
-              <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'tienda:inicio' %}">{% csrf_token %}
-                <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-            </li>
-          </ul>
-        </div>
-      
-
-
-      
-      
-    </div>
-
-
-    {% block bar %}
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-      <a class="navbar-brand" href="{% url 'tienda:inicio' %}"><img width="50" height="60"
-          src="{% static 'tienda/images/mozart.jpg' %}" alt="Logo"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse fondo" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'tienda:inicio' %}">Inicio <span class="sr-only"></span></a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Genero
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              {% for genero in generos %}
-              <a class="dropdown-item" href="{% url 'tienda:genre' genero %}">{{ genero }}</a>
-              {% endfor %}
-            </div>
-          </li>
-          <li class="nav-item">
-
-            <a class="nav-link" href="{% url 'tienda:contacto' %}">Contacto</a>
-          </li>
-          <li class="nav-item ">
-            <form class="form-inline">
-              {% if user.is_authenticated %}
-              <a class="nav-link" href="{% url 'logout' %}">Hola!!! <strong>{{ user.get_username }}</strong> | Salir</a>
-              {% else %}
-              <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
-              <a class="nav-link" href="{% url 'tienda:signup' %}">Registrarse</a>
-              {% endif %}
-            </form>
-          </li>
-
-        </ul>
-        <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'tienda:inicio' %}">{% csrf_token %}
-          <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+  {% block bar %}
+  <ul style="list-style-type: none">
+    <li class="nav-item float-left">
+      <a class="navbar-brand" href="{% url 'tienda:inicio' %}"><img width="100" height="100"
+        src="{% static 'tienda/amadeus2.png' %}" alt="Logo"></a>
+    </li>
+  </ul>
+  <ul class="nav justify-content-end" style="padding-top: 13px;">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'tienda:inicio' %}"><strong>Inicio</strong> </a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Genero
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% for genero in generos %}
+        <a class="dropdown-item" href="{% url 'tienda:genre' genero %}">{{ genero }}</a>
+        {% endfor %}
       </div>
-    </nav> -->
-    {% endblock %}
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'tienda:contacto' %}">Contacto</a>
+    </li>
+    <li class="nav-item">
+      <form class="form-inline">
+        {% if user.is_authenticated %}
+        <a class="nav-link" href="{% url 'logout' %}">Hola!!! <strong>{{ user.get_username }}</strong> | Salir</a>
+        {% else %}
+        <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
+        <a class="nav-link" href="{% url 'tienda:signup' %}">Registrarse</a>
+        {% endif %}
+      </form>
+    </li>
+    <li class="nav-item">
+      <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'tienda:inicio' %}">{% csrf_token %}
+        <input name="search" class="form-control" type="search" placeholder="buscar" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" style="height: 38px; border-radius: 0 .25rem .25rem 0;" type="submit">
+          <img src="{% static 'tienda/search.svg' %}" alt="xxx" width="25" height="25" title="Bootstrap">
+        </button>
+      </form>
+    </li>
+  </ul>
+</div>
+  {% endblock %}
   </div>
 
   <div id="content" class="container ">
