@@ -23,7 +23,11 @@
       </p>
         
     </div>
-		</div>
+    </div>
+    {% empty %}
+    <div class="alert alert-danger" role="alert">
+      Disculpe no se encontraron discos con ese patrón.
+    </div>
 		{% endfor %}
       </div>
     </div>
