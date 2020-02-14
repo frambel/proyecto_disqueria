@@ -1,83 +1,157 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-	<!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'tienda/bootstrap/css/bootstrap.min.css' %}">
-    {% block css %}{% endblock %}
-    
-    <link rel="stylesheet" type="text/css" href="{% static 'tienda/styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'tienda/bootstrap/css/open-iconic-bootstrap.min.css' %}">
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'tienda/bootstrap/css/open-iconic.ttf' %}"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ=" crossorigin="anonymous" />
-	<title>{% block title %}{% endblock %}</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'tienda/bootstrap/css/bootstrap.min.css' %}">
+  {% block css %}{% endblock %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'tienda/styles.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'tienda/bootstrap/css/open-iconic-bootstrap.min.css' %}">
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'tienda/bootstrap/css/open-iconic.ttf' %}"> -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"
+    integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ=" crossorigin="anonymous" />
+  <title>{% block title %}{% endblock %}</title>
 </head>
+
 <body>
-	<div id="navbar" class="container ">
-        {% block bar %}
-        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
-          <a class="navbar-brand"  href="{% url 'tienda:inicio' %}"><img width="50" height="60" src="{% static 'tienda/images/mozart.jpg' %}"  alt="Logo"></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        
-          <div class="collapse navbar-collapse fondo" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'tienda:inicio' %}">Inicio <span class="sr-only"></span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link ">Artistas</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Genero
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {% for genero in generos %}
-                  <a class="dropdown-item" href="{% url 'tienda:genre' genero %}">{{ genero }}</a>
-                  {% endfor %}
-                </div>  
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'tienda:contacto' %}">Contacto</a>
-              </li>
-              <li class="nav-item ">
-                {% if user.is_authenticated %}
-                  <a class="nav-link" href="{% url 'logout' %}">Hola!!! <strong>{{ user.get_username }}</strong> | Logout</a>
-                {% else %}
-                  <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
-                {% endif %}
-              </li>
+  <div class="container ">
+    {% block bar %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: #3e4551 !important;">
+      <a class="navbar-brand" href="{% url 'tienda:inicio' %}"><img width="100" height="100"
+          src="{% static 'tienda/amadeus2.png' %}" alt="Logo" style="
+          margin-left: 50px;
+      "></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-            </ul>
-            <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'tienda:inicio' %}">{% csrf_token %}
-              <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item" style="width: 150px;">
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'tienda:inicio' %}"><strong>Inicio</strong> </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Genero
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% for genero in generos %}
+              <a class="dropdown-item" href="{% url 'tienda:genre' genero %}">{{ genero }}</a>
+              {% endfor %}
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'tienda:contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <form class="form-inline">
+              {% if user.is_authenticated %}
+              <a class="nav-link" href="{% url 'logout' %}">Hola!!! <strong>{{ user.get_username }}</strong> | Salir</a>
+              {% else %}
+              <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
+              <a class="nav-link" href="{% url 'tienda:signup' %}">Registrarse</a>
+              {% endif %}
             </form>
-          </div>
-        </nav>
-        {% endblock %}
+          </li>
+          <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'tienda:inicio' %}">{% csrf_token %}
+              <input name="search" class="form-control" type="search" placeholder="buscar" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0"
+                style="height: 38px; border-radius: 0 .25rem .25rem 0;" type="submit">
+                <img src="{% static 'tienda/search.svg' %}" alt="buscar" width="25" height="25" title="Buscar">
+              </button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  {% endblock %}
+  </div>
+  </div>
+
+  <div id="content" class="container ">
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- Footer -->
+  <footer class="  pt-4 container">
+
+    <!-- Footer Links -->
+    <div class=" text-center text-md-left">
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-4 mx-auto">
+
+          <!-- Content -->
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4"></h5>
+          <address style="color: white;">
+            <strong>AmadeusS.A.</strong><br>
+            <div>
+              19 de julio, 1234<br>
+              Montevideo, Uruguay<br>
+              <abbr title="Phone">P:</abbr> (598) 09866547
+            </div>
+          </address>
+        </div>
+        <!-- Grid column -->
+
+        <hr class="clearfix w-100 d-md-none">
+
+        <!-- Grid column -->
+        <div class="col-md-8 mx-auto">
+
+          <!-- Call to action -->
+          <ul class="list-unstyled list-inline text-left py-2 registro">
+            <li class="list-inline-item">
+              <h5 class="mb-1" style="
+              color: white;">Registrese gratis</h5>
+            </li>
+            <li class="list-inline-item">
+              <a href="{% url 'tienda:signup' %}" class="btn btn-danger rounded-pill">Registrarse!</a>
+            </li>
+          </ul>
+          <!-- Call to action -->
+
+        </div>
+        <!-- Grid column -->
+        <hr class="clearfix w-100 d-md-none">
+      </div>
+      <!-- Grid row -->
+
     </div>
+    <!-- Footer Links -->
+    <hr>
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 colorFuente" style="
+    color: white;">© 2020 Copyright:
+      <a href="{% url 'tienda:inicio' %} " style="
+      color: white;">www.amadeus.com</a>
+    </div>
+    <!-- Copyright -->
 
-    <div id="content" class="container ">
-        {% block content %}{% endblock %}
-    </div> 
+  </footer>
+  <!-- Footer -->
 
-    <footer class="container">
-      <span class="oi oi-person" title="person" aria-hidden="true"></span>
-      <span class="oi oi-musical-note"></span>
-      <span class="oi oi-icon-name" title="icon name" aria-hidden="true"></span>
-    </footer>
-
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{% static 'tienda/bootstrap/js/jquery-3.4.1.slim.min.js' %}"></script>
-    <script src="{% static 'tienda/bootstrap/js/popper.min.js' %}"></script>
-    <script src="{% static 'tienda/bootstrap/js/bootstrap.min.js' %}"></script>
-    {% block js %}{% endblock %}
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="{% static 'tienda/bootstrap/js/jquery-3.4.1.slim.min.js' %}"></script>
+  <script src="{% static 'tienda/bootstrap/js/popper.min.js' %}"></script>
+  <script src="{% static 'tienda/bootstrap/js/bootstrap.min.js' %}"></script>
+  {% block js %}{% endblock %}
 </body>
+
 </html>

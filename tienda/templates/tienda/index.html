@@ -18,12 +18,16 @@
          $ {{disco.precio}}
         {% else %}
         <br>
-         <a href='#' data-toggle="tooltip" data-placement="top" title="Para ver los precios debe Registrarse o Autenticarse."><strong>Ver precio.</strong></a href='#'>
+         <a href="{% url 'login' %}" data-toggle="tooltip" data-placement="top" title="Para ver los precios debe Registrarse o Autenticarse."><strong>Ver precio.</strong></a>
         {% endif %}
       </p>
         
     </div>
-		</div>
+    </div>
+    {% empty %}
+    <div class="alert alert-danger" role="alert">
+      Disculpe no se encontraron discos con ese patrón.
+    </div>
 		{% endfor %}
       </div>
     </div>

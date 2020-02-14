@@ -12,10 +12,54 @@
     background-color: #343a40;
 }
 
+#navbar {
+background: #3e4551;
+}
+
+.dropdown-item {
+background: #3e4551;
+color: white;
+}
+
+.form-control {
+    border-radius: .25rem 0 0 .25rem;
+}
+
+.dropdown-menu{
+    background: #3e4551;
+}
+
+.dropdown-item:hover {
+    text-decoration: none;
+    background-color: #3e4551;
+    color: gray;
+}
 li > a{
+    color: white !important;
+}
+
+form > a{
     color: white !important;
 }
 
 .is{
     display: inline;
+}
+
+footer{
+    background-color: #3e4551;
+}
+
+colorFuente{
+    color: white !important;
+    
+}
+
+address{
+    margin-left: 60px;
+}
+
+.registro{
+    margin-left: 120px;
+    margin-top: 40px;
 }
