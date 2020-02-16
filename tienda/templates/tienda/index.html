@@ -3,33 +3,30 @@
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
-<div class="album py-5 bg-light ">
-    <div class="">
-
-      <div class="row ">
-		{% for disco in discos %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm card_size">
-            <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>ksakfksd</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">ffff</text></svg> -->
-			<!-- <img with='70px' height="70" src="{{ disco.image.url }}" /> -->
-			<img class="size" src="{{ disco.image.url }}"  alt="{{disco.titulo}}">
-      <p class="card-text">{{disco.titulo}}, 
-        {% if user.is_authenticated %}
-         $ {{disco.precio}}
-        {% else %}
-        <br>
-         <a href="{% url 'login' %}" data-toggle="tooltip" data-placement="top" title="Para ver los precios debe Registrarse o Autenticarse."><strong>Ver precio.</strong></a>
-        {% endif %}
-      </p>
-        
-    </div>
-    </div>
-    {% empty %}
-    <div class="alert alert-danger" role="alert">
-      Disculpe no se encontraron discos con ese patrón.
-    </div>
-		{% endfor %}
+<!-- <div class="album py-5 bg-light "> -->
+  <div class="">
+    <div class="row" style="margin-top: 24px;margin-bottom: 24px;">
+      {% for disco in discos %}
+      <div class="col-md">
+        <!-- <div class="card mb-4 shadow-sm card_size"> -->
+          <img class=" img-fluid" src="{{ disco.image.url }}" alt="{{disco.titulo}}">
+          <p class="card-text">{{disco.titulo}},
+            {% if user.is_authenticated %}
+            $ {{disco.precio}}
+            {% else %}
+            <br>
+            <a href="{% url 'login' %}" data-toggle="tooltip" data-placement="top"
+              title="Para ver los precios debe Registrarse o Autenticarse."><strong>Ver precio.</strong></a>
+            {% endif %}
+          </p>
+        <!-- </div> -->
       </div>
+      {% empty %}
+      <div class="alert alert-danger" role="alert">
+        Disculpe no se encontraron discos con ese patrón.
+      </div>
+      {% endfor %}
     </div>
   </div>
+<!-- </div> -->
 {% endblock %}
