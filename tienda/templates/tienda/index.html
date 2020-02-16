@@ -7,9 +7,9 @@
   <div class="">
     <div class="row" style="margin-top: 24px;margin-bottom: 24px;">
       {% for disco in discos %}
-      <div class="col-md">
+      <div class="col-lg-3 col-md-4 ">
         <!-- <div class="card mb-4 shadow-sm card_size"> -->
-          <img class=" img-fluid" src="{{ disco.image.url }}" alt="{{disco.titulo}}">
+          <img class="rounded img-fluid" src="{{ disco.image.url }}" alt="{{disco.titulo}}">
           <p class="card-text">{{disco.titulo}},
             {% if user.is_authenticated %}
             $ {{disco.precio}}
